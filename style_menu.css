@@ -1,13 +1,20 @@
+/* ============================================
+   PELNI - style_menu.css (Responsive Version)
+   ============================================ */
+
+/* ── NAVBAR ── */
 .navbar {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    text-decoration: none;
     padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-sizing: border-box;
     justify-content: space-between;
 }
 
@@ -15,61 +22,80 @@
     font-size: 24px;
     font-weight: bold;
     color: #D38282;
-    margin-left: 6%;
-    margin-right: 10%;
     text-decoration: none;
+    flex-shrink: 0;
+}
+
+.navbar .menu {
+    display: flex;
+    align-items: center;
+    gap: 0;
 }
 
 .navbar .menu a {
-    margin: 0 10px;
     text-decoration: none;
     color: #333;
     font-size: 14px;
     margin-left: 2rem;
+    white-space: nowrap;
 }
 
+/* Hamburger button — hidden on desktop */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 1001;
+}
 
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+/* ── FOOTER ── */
 footer {
     padding: 40px 5%;
-    color: rgb(0, 0, 0);
+    color: #000;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
-    margin-left: 18%;
-    z-index: 100;
     background-color: #fff;
+    box-sizing: border-box;
 }
 
-.alamat h3 {
-    font-size: 18px;
+.alamat h3, .alamat h4 { font-size: 16px; font-weight: bold; margin-bottom: 12px; }
+.alamat p { font-size: 14px; line-height: 1.6; color: #7c7c7c; }
+
+.kontak h3, .kontak h4,
+.link h3, .link h4,
+.medsos h3, .medsos h4 {
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.alamat p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #7c7c7c;
-}
-
-.kontak h3, .link h3, .medsos h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .kontak p, .link p {
     font-size: 14px;
     line-height: 1.6;
     color: #7c7c7c;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .medsos .social-icons {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    margin-top: 5%;
+    margin-top: 10px;
 }
 
 .medsos .social-icons img {
@@ -78,13 +104,78 @@ footer {
     transition: opacity 0.3s ease;
 }
 
-.medsos .social-icons img:hover {
-    opacity: 0.8;
+.medsos .social-icons img:hover { opacity: 0.8; }
+
+/* ── DIVIDER ── */
+.footer-divider {
+    width: 100%;
+    height: 0.5px;
+    background-color: rgb(145, 145, 145);
+    margin-top: 40px;
 }
 
-.decorative-rectangle{
+/* ── DECORATIVE RECTANGLE ── */
+.decorative-rectangle {
     width: 100%;
     height: 50px;
     background-color: #D38282;
-    margin-left: -3%;
+    margin-left: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   TABLET — max-width: 768px
+   ============================================ */
+@media (max-width: 768px) {
+
+    /* Show hamburger */
+    .nav-toggle { display: flex; }
+
+    /* Hide menu by default on mobile */
+    .navbar .menu {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #fff;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 1000;
+    }
+
+    .navbar .menu.open { display: flex; }
+
+    .navbar .menu a {
+        font-size: 20px;
+        margin-left: 0;
+    }
+
+    /* Footer: 2 kolom */
+    footer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-left: 0;
+        padding: 30px 5%;
+    }
+}
+
+/* ============================================
+   MOBILE — max-width: 480px
+   ============================================ */
+@media (max-width: 480px) {
+
+    .navbar { padding: 0.8rem 1.2rem; }
+
+    /* Footer: 1 kolom */
+    footer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 24px 16px;
+    }
+
+    .decorative-rectangle { margin-left: 0; width: 100%; }
 }
