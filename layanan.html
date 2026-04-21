@@ -1,110 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pelni - Layanan</title>
     <link rel="stylesheet" href="style_menu.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            color: #333;
-        }
-
-        h5 {
-            font-size: 1.2em;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        p {
-            margin: 5px 0;
-        }
+        body { font-family:Arial,sans-serif; margin:0; padding:0; background:#fff; color:#333; }
+        main { padding-top:80px; display:flex; flex-wrap:wrap; gap:20px; padding-bottom:40px; }
 
         .sidebar {
-            margin-top: 5%;
-            width: 20%;
-            padding: 20px;
-            height: -30%;
-            margin-left: 13%;
-            line-height: 2;
+            width:200px; min-width:160px;
+            padding:20px 20px 20px 24px;
+            line-height:2;
+            flex-shrink:0;
         }
 
-        .sidebar p {
-            margin: 10px 0;
-            font-size: 11px;
-            color: #333;
+        .sidebar p { font-size:13px; color:#333; margin:4px 0; cursor:pointer; }
+        .sidebar p:hover { color:#9e3737; }
+        .sidebar h5 { font-size:13px; color:#333; font-weight:700; margin-top:16px; }
+
+        .cards-container {
+            flex:1; min-width:260px;
+            display:flex; flex-wrap:wrap;
+            gap:20px; padding:20px;
         }
 
-        .sidebar h5 {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #333;
+        .layanan-card {
+            width:220px; flex-shrink:0;
+            border-radius:8px; overflow:hidden;
+            box-shadow:0 2px 8px rgba(0,0,0,0.12);
+            position:relative;
         }
 
-        .container {
-            margin-left: 30%;
-            display: flex;
-            flex-wrap: wrap;
-            padding: 20px;
-            margin-top: -25%;
-            gap: 30px;
+        .layanan-card img {
+            width:100%; height:280px;
+            object-fit:cover; display:block;
         }
 
-        .card {
-            width: 25%;
-            background-color: #fff;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            z-index: -100;
+        .layanan-card .overlay {
+            position:absolute; bottom:0; left:0; right:0;
+            background:linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding:16px 12px;
+            color:#fff;
         }
 
-        .card:hover {
-            transform: scale(1.05);
-        }
+        .layanan-card .overlay p:first-child { font-size:15px; font-weight:700; font-style:italic; margin-bottom:6px; }
+        .layanan-card .overlay p:last-child { font-size:11px; color:#eee; }
 
-        .card img {
-            width: 100%;
-            height: 190%;
-            object-fit: cover;
-            box-shadow: inset 0 4 4px rgba(0, 0, 0, 0.5);/* Inner shadow */
-            z-index: -1;
-        }
-
-        .card-content {
-            padding: 20px;
-            width: 70%;
-            color: #fff;
-            margin-left: 10px;
-        }
-
-        .card-content p:first-child {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            margin-top: -240%;
-            font-style: italic;
-        }
-
-        .card-content p:last-child {
-            font-size: 10px;
-            color: #ffffff;
-            margin-top: 125%;
-            font-weight: 700;
+        @media (max-width:600px) {
+            main { flex-direction:column; }
+            .sidebar { width:100%; padding:16px; }
+            .cards-container { padding:0 16px 16px; }
+            .layanan-card { width:100%; }
+            .layanan-card img { height:220px; }
         }
     </style>
 </head>
-
 <body>
-    <header class="navbar" style="margin-top: -5%;">
-        <div class="logo" style="margin-left: 7%; width: 30px;"><a href="home.html" style="text-decoration: none; color: #D38282;">PELNI</a></div>
-        <nav class="menu">
-            <a href="reservasi.html" style="margin-left: -10.9%;">Reservasi Tiket</a>
-            <a href="jasa logistik.html">Jasa Logistik</a>
+    <header class="navbar">
+        <div class="logo"><a href="home.html" style="text-decoration:none;color:#D38282;">PELNI</a></div>
+        <button class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></button>
+        <nav class="menu" id="mainNav">
+            <a href="reservasi.html">Reservasi Tiket</a>
+            <a href="jasa_logistik.html">Jasa Logistik</a>
             <a href="layanan.html">Layanan</a>
         </nav>
     </header>
@@ -119,66 +78,38 @@
             <p>PELNI ASET</p>
             <p>KETENTUAN BAGASI</p>
         </div>
-        <div class="container" style="margin-top: -20%;">
-            <div class="card">
-                <img src="img/likupang.jpeg" alt="likupang">
-                <div class="card-content">
+        <div class="cards-container">
+            <div class="layanan-card">
+                <img src="img/likupang.jpeg" alt="Likupang">
+                <div class="overlay">
                     <p>Let's Go Likupang bersama PELNI Lifestyle</p>
                     <p>Likupang, Surga tersembunyi di Sulawesi Utara</p>
                 </div>
             </div>
-            <div class="card">
-                <img src="img/labuan-bajo.jpg" alt="labuan">
-                <div class="card-content">
-                    <p><br><br>Labuan Bajo Tour</p>
-                    <p>Hoping island di Labuan Bajo Bersama PELNI Lifestyle</p>
+            <div class="layanan-card">
+                <img src="img/labuan-bajo.jpg" alt="Labuan Bajo">
+                <div class="overlay">
+                    <p>Labuan Bajo Tour</p>
+                    <p>Hopping island di Labuan Bajo Bersama PELNI Lifestyle</p>
                 </div>
             </div>
-            <div class="card">
-                <img src="img/kapal phinisi.jpg" alt="phinisi">
-                <div class="card-content">
-                    <p><br>Labuan Bajo Sunset Dinner & Music</p>
-                    <p>Makan malam di atas kapal Phinisi sambil Menikmati keindahan Labuan Bajo</p>
+            <div class="layanan-card">
+                <img src="img/kapal phinisi.jpg" alt="Phinisi">
+                <div class="overlay">
+                    <p>Labuan Bajo Sunset Dinner & Music</p>
+                    <p>Makan malam di atas kapal Phinisi sambil menikmati keindahan Labuan Bajo</p>
                 </div>
             </div>
         </div>
     </main>
-
-    <div style="width: 103%; height: 0.5px; background-color: rgb(145, 145, 145); margin: 0; margin-top: 20%;"></div>
+    <div class="footer-divider"></div>
     <footer>
-        <div class="alamat">
-            <h3>PT PELNI (Persero) HQ</h3>
-            <p>Jl. Gajah Mada No. 14,<br>
-                Jakarta Pusat, 10130<br>
-                DKI Jakarta, Indonesia</p>
-        </div>
-
-        <div class="kontak">
-            <h3>Kontak Pusat</h3>
-            <p>T. 162 (Jabodetabek)<br>
-                F. +62 21 6385 4130<br>
-                E. infopelni162@pelni.co.id</p>
-        </div>
-
-        <div class="link">
-            <p>PPID</p>
-            <p>TENDER</p>
-            <p>KARIR</p>
-            <p>FAQ</p>
-            <p>Kantor Cabang</p>
-        </div>
-
-        <div class="medsos">
-            <h3>Media Sosial Kami</h3>
-            <div class="social-icons">
-                <img src="img/instagram.png" alt="Instagram">
-                <img src="img/social.png" alt="YouTube">
-                <img src="img/facebook.png" alt="Facebook">
-                <img src="img/twitter-alt.png" alt="Twitter">
-            </div>
-        </div>
+        <div class="alamat"><h3>PT PELNI (Persero) HQ</h3><p>Jl. Gajah Mada No. 14,<br>Jakarta Pusat, 10130<br>DKI Jakarta, Indonesia</p></div>
+        <div class="kontak"><h3>Kontak Pusat</h3><p>T. 162 (Jabodetabek)<br>F. +62 21 6385 4130<br>E. infopelni162@pelni.co.id</p></div>
+        <div class="link"><h3>Tautan</h3><p>PPID</p><p>TENDER</p><p>KARIR</p><p>FAQ</p><p>Kantor Cabang</p></div>
+        <div class="medsos"><h3>Media Sosial Kami</h3><div class="social-icons"><img src="img/instagram.png" alt="Instagram"><img src="img/social.png" alt="YouTube"><img src="img/facebook.png" alt="Facebook"><img src="img/twitter-alt.png" alt="Twitter"></div></div>
     </footer>
     <div class="decorative-rectangle"></div>
+    <script>function toggleNav(){document.getElementById('mainNav').classList.toggle('open');}</script>
 </body>
-
 </html>
